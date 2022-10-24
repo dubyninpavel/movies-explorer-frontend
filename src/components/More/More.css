@@ -1,0 +1,26 @@
+.more {
+  display: flex;
+  justify-content: center;
+  padding: 50px 10px 80px;
+}
+
+.more__button {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  height: 36px;
+  max-width: 320px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid rgba(232, 232, 232, 1);
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .more {
+    padding: 3vh 10px 10vh;
+  }
+}

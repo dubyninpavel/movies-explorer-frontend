@@ -1,0 +1,102 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 0;
+  padding: 62px 70px 20px;
+}
+
+.footer__title {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0 auto 12px;
+  color: rgba(160, 160, 160, 1);
+}
+
+.footer__container {
+  display: flex;
+  padding: 11px 0 0 0;
+  justify-content: space-between;
+}
+
+.footer__year {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0 0 0 0;
+  color: rgba(160, 160, 160, 1);
+}
+
+.footer__author {
+  display: flex;
+}
+
+.footer__project {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0 20px 0 0;
+  color: black;
+  text-decoration: none;
+}
+
+.footer__project:hover {
+  opacity: .5;
+}
+
+.footer__git {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: black;
+  text-decoration: none;
+}
+
+.footer__git:hover {
+  opacity: .5;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 62px 30px 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer {
+    padding: 8vh 10px 20px;
+  }
+
+  .footer__title {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .footer__year {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .footer__container {
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 21px 0 0 0;
+  }
+
+  .footer__author {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer__project {
+    font-size: 12px;
+    line-height: 15px;
+    margin: 0 0 0 0;
+  }
+
+  .footer__git {
+    font-size: 12px;
+    line-height: 15px;
+    margin: 1vh 0 4vh 0;
+  }
+}

@@ -1,0 +1,130 @@
+.aboutme {
+  display: flex;
+  flex-direction: column;
+  padding: 111px 70px 0;
+}
+
+.aboutme__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.aboutme__card {
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutme__name {
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  margin: 65px 0 19px 0;
+}
+
+.aboutme__subline {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  margin: 0 0 0 0;
+}
+
+.aboutme__info {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  margin: 25px 30px 0 0;
+  max-width: 600px;
+}
+
+.aboutme__git {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 99px 0 0 0;
+  color: black;
+  text-decoration: none;
+}
+
+.aboutme__git:hover {
+  opacity: .5;
+  cursor: pointer;
+}
+
+.aboutme__photo {
+  width: 270px;
+  margin: 66px 0 0 0;
+  object-fit: cover;
+  border: 1px solid rgba(0, 0, 0, .2);
+  max-height: 323px;
+  border-radius: 10px;
+}
+
+@media (max-width: 850px) {
+  .aboutme {
+    padding: 10vh 50px 0;
+  }
+
+  .aboutme__name {
+    font-size: 40px;
+    line-height: 40px;
+    margin: 65px 0 16px 0;
+  }
+
+  .aboutme__subline {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .aboutme__info {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 20px 50px 0 0;
+    max-width: 600px;
+  }
+
+  .aboutme__git {
+    margin: 87px 0 0 0;
+  }
+
+  .aboutme__photo {
+    width: 254px;
+  }
+}
+
+@media (max-width: 600px) {
+  .aboutme {
+    padding: 9vh 14px 0;
+  }
+
+  .aboutme__container {
+    flex-direction: column-reverse;
+  }
+
+  .aboutme__photo {
+    width: 100%;
+    margin: 7vh 0 0 0;
+  }
+
+  .aboutme__name {
+    font-size: 30px;
+    line-height: 36px;
+    margin: 39px 0 19px 0;
+  }
+
+  .aboutme__info {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 20px 0 0 0;
+    max-width: 100%;
+  }
+
+  .aboutme__git {
+    margin: 4vh 0 0 0;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 599px) {
+  .aboutme__photo {
+    object-position: top;
+  }
+}
