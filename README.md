@@ -17,6 +17,9 @@ Frontend часть приложения по поиску Фильмов
 4. WebPack.
 5. React.
 
+## Ссылка на pull requests
+* [pull requests](https://github.com/dubyninpavel/movies-explorer-frontend/pull/1)
+
 ## Ссылка на макет Figma
 * [Яндекс Диск](https://disk.yandex.ru/d/UywlF3nqU2EurQ)
 

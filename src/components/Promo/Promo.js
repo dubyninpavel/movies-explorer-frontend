@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import promoLogo from '../../images/promoLogo.svg';
-import promoPhotoWeb from '../../images/promoPhotoWeb.svg';
+import promoPhoto from '../../images/promo_photo.svg';
 
 function Promo() {
   return (
@@ -14,10 +14,9 @@ function Promo() {
       </div>
       <div className='promo__info'>
         <div className='promo__text'>
-          <h1 className='promo__text_main'>Учебный проект студента факультета <br /> Веб-разработки.</h1>
-          <p className='promo__text_subline'>Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
+          <h1 className='promo__text_main'>Учебный проект студента факультета Веб-разработки.</h1>
         </div>
-        <img className='promo__image' src={promoPhotoWeb} alt='Web-разработка' />
+        <img className='promo__image' src={promoPhoto} alt='Web-разработка' />
       </div>
     </section>
   );

@@ -17,8 +17,8 @@ function Navigation({ isOpenNavMenu, onCloseMenu }) {
         <NavLink to='/movies' className={`navigation__movies ${isOpenNavMenu ? 'navigation__main_active navigation__movies_active' : ''}`} activeClassName='navigation__movies_activelink navigation__main_activelink' >Фильмы</NavLink>
         <NavLink to='/saved-movies' className={`navigation__savedmovies ${isOpenNavMenu ? 'navigation__main_active navigation__savedmovies_active' : ''}`} activeClassName='navigation__savedmovies_activelink navigation__main_activelink'>Сохраненные фильмы</NavLink>
         <NavLink to='/profile' className={`navigation__lk ${isOpenNavMenu ? 'navigation__lk_active' : ''}`} activeClassName='navigation__lk_activelink' >
-          <img className='navigation__imagelk' src={headerLogoLk} alt='Логопит личного кабинета' />
           <h2 className='navigation__textlk'>Аккаунт</h2>
+          <img className='navigation__imagelk' src={headerLogoLk} alt='Логопит личного кабинета' />
         </NavLink>
       </div>
     </nav>

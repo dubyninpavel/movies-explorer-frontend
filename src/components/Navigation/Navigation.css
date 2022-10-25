@@ -55,30 +55,30 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  margin: 0 0 0 46px;
-  border: 2px solid rgba(170, 170, 170, 1);
-  border-radius: 50px;
+  margin: 0 0 0 50px;
 }
 
 .navigation__lk:hover {
   opacity: .5;
 }
 
-.navigation__lk_activelink {
-  border: 2px solid lightcoral;
+.navigation__lk_activelink .navigation__textlk {
+  font-weight: 550;
+  color: lightcoral;
 }
 
 .navigation__imagelk {
-  width: 12px;
-  height: 14px;
-  margin: 0 0 0 10px;
+  background-color: rgba(249, 249, 249, 1);
+  border-radius: 6px;
+  padding: 10px;
+  margin: 0 0 0 0;
 }
 
 .navigation__textlk {
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
-  margin: 5px 12px 5px 7px;
+  margin: 0 13px 0 0;
   color: black;
 }
 
