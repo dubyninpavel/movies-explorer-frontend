@@ -19,6 +19,10 @@
   padding: 39px 0 0 0;
 }
 
+.portfolio__item {
+  list-style-type: none;
+}
+
 .portfolio__works {
   display: flex;
   justify-content: space-between;
@@ -26,15 +30,17 @@
   margin: 0 0 0 0;
 }
 
-.portfolio__works:nth-of-type(2n) {
-  margin: 12px 0;
-}
-
 .portfolio__name {
   font-weight: 400;
   font-size: 30px;
   line-height: 50px;
   margin: 0 0 0 0;
+  text-decoration: none;
+  color: #000000;
+}
+
+.portfolio__name:hover {
+  opacity: .5;
 }
 
 .portfolio__link {
@@ -51,10 +57,10 @@
 }
 
 .portfolio__line {
-  color: #000000;
+  color: #E8E8E8;
   size: 1px;
   width: 100%;
-  margin: 19px 0 0 0;
+  margin: 19px 0 20px 0;
 }
 
 @media (max-width: 768px) {

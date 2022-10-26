@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import promoLogo from '../../images/promoLogo.svg';
 
 function AutorizationWithForm({
   isRegister, title, titleButton, titleText, titleLink, link,
 }) {
   return (
-    <div className="autorizationwithform">
-      <Link to='/' className='autorizationwithform__logo'><img className='header__logo' src={promoLogo} alt='Логотип проекта Movies'/></Link>
+    <section className="autorizationwithform">
       <h2 className='autorizationwithform__title'>{title}</h2>
       <form className='autorizationwithform__form'>
         {
@@ -42,10 +40,10 @@ function AutorizationWithForm({
           placeholder='Пароль'
           required
         />
-        <button className='autorizationwithform__button'>{titleButton}</button>
+        <button type='submit' className='autorizationwithform__button'>{titleButton}</button>
         <p className='autorizationwithform__text'>{titleText}<Link className='autorizationwithform__link' to={link}>{titleLink}</Link></p>
       </form>
-    </div>
+    </section>
   );
 }
 

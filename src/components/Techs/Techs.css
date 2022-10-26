@@ -77,6 +77,7 @@
 @media (max-width: 450px) {
   .techs {
     padding: 8vh 18px;
+    background-color: white;
   }
 
   .techs__title {

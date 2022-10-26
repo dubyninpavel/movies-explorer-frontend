@@ -3,21 +3,23 @@ import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import SearchForm from '../SearchForm/SearchForm';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import HeaderAuth from '../HeaderAuth/HeaderAuth';
 
 function App() {
   return (
     <div className='page'>
       <Switch>
         <Route path='/signup'>
+          <HeaderAuth />
           <Register />
         </Route>
         <Route path='/signin'>
+          <HeaderAuth />
           <Login />
         </Route>
         <Route exact path='/'>
@@ -30,7 +32,6 @@ function App() {
         </Route>
         <Route path='/saved-movies'>
           <Header />
-          <SearchForm />
           <SavedMovies />
           <Footer />
         </Route>

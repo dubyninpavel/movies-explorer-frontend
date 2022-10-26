@@ -29,8 +29,8 @@
 }
 
 .navigation__movies_activelink {
-  font-weight: 550;
-  color: lightcoral;
+  text-decoration: underline solid black 2px;
+  text-underline-offset: 4px;
 }
 
 .navigation__savedmovies {
@@ -47,8 +47,8 @@
 }
 
 .navigation__savedmovies_activelink {
-  font-weight: 550;
-  color: lightcoral;
+  text-decoration: underline solid black 2px;
+  text-underline-offset: 4px;
 }
 
 .navigation__lk {
@@ -63,8 +63,8 @@
 }
 
 .navigation__lk_activelink .navigation__textlk {
-  font-weight: 550;
-  color: lightcoral;
+  text-decoration: underline solid black 2px;
+  text-underline-offset: 4px;
 }
 
 .navigation__imagelk {

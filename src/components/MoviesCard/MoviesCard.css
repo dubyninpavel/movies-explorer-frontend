@@ -1,6 +1,8 @@
 .moviescard {
   background-color: rgba(252, 252, 252, 1);
-  padding: 11px 0 0 0;
+  padding: 0 0 0 0;
+  border-radius: 10px;
+  box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.05);
 }
 
 .moviescard__container {
@@ -8,7 +10,7 @@
   justify-content: space-between;
   align-items: flex-start;
   margin: 0 0 0 0;
-  padding: 0 0 0 14px;
+  padding: 14px 12px;
 }
 
 .moviescard__info {
@@ -18,8 +20,8 @@
 
 .moviescard__title {
   font-weight: 500;
-  font-size: 15px;
-  line-height: 18px;
+  font-size: 13px;
+  line-height: 16px;
   margin: 0 0 10px 0;
   text-overflow: ellipsis;
   white-space: pre-line;
@@ -31,7 +33,7 @@
   font-size: 11px;
   line-height: 13px;
   color: rgba(160, 160, 160, 1);
-  margin: 0 0 13px 0;
+  margin: 0 0 0 0;
 }
 
 .moviescard__like {
@@ -53,15 +55,15 @@
 }
 
 .moviescard__delete {
-  height: 24px;
-  width: 24px;
+  height: 8px;
+  width: 8px;
   border-radius: 50%;
   border: none;
   background: no-repeat border-box url(../../images/delete__logo.svg);
   background-color: rgba(245, 245, 245, 1);
   background-position: center;
   padding: 0;
-  margin: 5px 15px 0 0;
+  margin: 4px 0 0 0;
   cursor: pointer;
 }
 
@@ -70,13 +72,48 @@
 }
 
 .moviescard__photo {
-  height: 203px;
   width: 100%;
   object-fit: cover;
+  border-radius: 10px 10px 0 0;
 }
 
-@media (max-width: 650px) {
-  .moviescard__container {
-    padding: 0 0 0 0;
-  }
+.moviescard__favorite {
+  position: relative;
+  margin: 0 0 0 0;
+}
+
+.moviescard__checkbox {
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  z-index: 2;
+  opacity: 0;
+  margin: 0 0 0 0;
+  cursor: pointer;
+}
+
+.moviescard__label {
+  cursor: pointer;
+}
+
+.moviescard__label:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  border: 2px solid white;
+  box-sizing: border-box;
+  border-radius: 50%;
+  transition: .2s;
+  background: #F9F9F9;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.09);
+  z-index: 1;
+}
+
+.moviescard__checkbox:checked + .moviescard__label:before {
+  background-color: rgba(43, 224, 128, 1);
 }

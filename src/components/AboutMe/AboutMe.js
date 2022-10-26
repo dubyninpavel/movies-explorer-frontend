@@ -13,7 +13,7 @@ function AboutMe() {
           В этом году закончил магистартуру в Санкт-Петербургском политехническом университете
           Петра Великого. Я люблю слушать музыку, а также заниматься спортом. Сейчас занимаюсь
           программированием.</p>
-          <a className="aboutme__git" href='https://github.com/dubyninpavel'>Github</a>
+          <a className="aboutme__git" href='https://github.com/dubyninpavel' target="_blank" rel='noreferrer'>Github</a>
         </div>
         <img className="aboutme__photo" src={myPhoto} alt="Моя фотография"/>
       </div>

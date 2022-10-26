@@ -2,7 +2,7 @@ import { NAME, EMAIL } from '../../constants/constants';
 
 function Profile() {
   return (
-    <section className="profile">
+    <main className="profile">
       <h2 className='profile__hello'>Привет, {NAME}!</h2>
       <div className='profile__info'>
         <div className='profile__container'>
@@ -15,9 +15,9 @@ function Profile() {
           <h3 className='profile__data'>{EMAIL}</h3>
         </div>
       </div>
-      <button className='profile__button profile__edit'>Редактировать</button>
-      <button className='profile__button profile__signout'>Выйти из аккаунта</button>
-    </section>
+      <button type='submit' className='profile__button profile__edit'>Редактировать</button>
+      <button type='submit' className='profile__button profile__signout'>Выйти из аккаунта</button>
+    </main>
   );
 }
 

@@ -5,14 +5,14 @@ import dataMovies from '../../constants/dataMovies';
 
 function Movies() {
   return (
-    <>
+    <main>
       <SearchForm />
       <MoviesCardList
         arr = {dataMovies}
         isSavedMoviesPages = {false}
       />
       <More />
-    </>
+    </main>
   );
 }
 

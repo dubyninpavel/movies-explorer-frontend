@@ -2,7 +2,7 @@ import AutorizationWithForm from '../AutorizationWithForm/AutorizationWithForm';
 
 function Register() {
   return (
-    <section className="register">
+    <main className="register">
       <AutorizationWithForm
         isRegister = {true}
         title = {'Добро пожаловать!'}
@@ -11,7 +11,7 @@ function Register() {
         titleLink = {'Войти'}
         link = {'/signin'}
       />
-    </section>
+    </main>
   );
 }
 

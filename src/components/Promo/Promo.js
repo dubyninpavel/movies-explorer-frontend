@@ -4,7 +4,7 @@ import promoPhoto from '../../images/promo_photo.svg';
 
 function Promo() {
   return (
-    <section className='promo'>
+    <header className='promo'>
       <div className='promo__header'>
         <Link to='/'><img className='promo__logo' src={promoLogo} alt='Логотип проекта Movies'/></Link>
         <nav className='promo__authorization'>
@@ -18,7 +18,7 @@ function Promo() {
         </div>
         <img className='promo__image' src={promoPhoto} alt='Web-разработка' />
       </div>
-    </section>
+    </header>
   );
 }
 
