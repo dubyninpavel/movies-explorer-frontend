@@ -60,6 +60,10 @@
   cursor: pointer;
 }
 
+.searchform__button:hover {
+  opacity: .5;
+}
+
 .searchform__hr {
   color: rgba(170, 170, 170, 1);
   size: 1px;
