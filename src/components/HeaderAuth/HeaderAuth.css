@@ -1,0 +1,21 @@
+.headerauth {
+  display: flex;
+  justify-content: center;
+  padding: 8vh 0 0 0;
+}
+
+.headerauth__container {
+  display: flex;
+  max-width: 396px;
+  width: 100%;
+}
+
+@media (max-width: 450px) {
+  .headerauth {
+    padding: 6vh 0 0 0;
+  }
+
+  .headerauth__container {
+    justify-content: center;
+  }
+}

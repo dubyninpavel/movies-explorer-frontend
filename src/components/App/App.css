@@ -1,0 +1,9 @@
+.page {
+  background-color: #FFFFFF;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  height: 100vh;
+  color: #000000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

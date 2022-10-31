@@ -1,0 +1,119 @@
+.moviescard {
+  background-color: rgba(252, 252, 252, 1);
+  padding: 0 0 0 0;
+  border-radius: 10px;
+  box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.05);
+}
+
+.moviescard__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 0 0 0;
+  padding: 14px 12px;
+}
+
+.moviescard__info {
+  max-width: 80%;
+  margin: 0 0 0 0;
+}
+
+.moviescard__title {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0 0 10px 0;
+  text-overflow: ellipsis;
+  white-space: pre-line;
+  overflow: hidden;
+}
+
+.moviescard__duration {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: rgba(160, 160, 160, 1);
+  margin: 0 0 0 0;
+}
+
+.moviescard__like {
+  height: 30px;
+  width: 30px;
+  border: none;
+  border-radius: 50%;
+  background: no-repeat border-box url(../../images/like_logo.svg);
+  background-color: rgba(248, 248, 248, 1);
+  background-position: center;
+  padding: 0;
+  margin: 5px 14px 0 0
+}
+
+.moviescard__like_active {
+  background: no-repeat border-box url(../../images/like_logo_active.svg);
+  background-color: #2BE080;
+  background-position: center;
+}
+
+.moviescard__delete {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  border: none;
+  background: no-repeat border-box url(../../images/delete__logo.svg);
+  background-color: rgba(245, 245, 245, 1);
+  background-position: center;
+  padding: 0;
+  margin: 4px 0 0 0;
+  cursor: pointer;
+}
+
+.moviescard__delete:hover {
+  opacity: .5;
+}
+
+.moviescard__photo {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.moviescard__favorite {
+  position: relative;
+  margin: 0 0 0 0;
+}
+
+.moviescard__checkbox {
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  z-index: 2;
+  opacity: 0;
+  margin: 0 0 0 0;
+  cursor: pointer;
+}
+
+.moviescard__label {
+  cursor: pointer;
+}
+
+.moviescard__label:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  border: 2px solid white;
+  box-sizing: border-box;
+  border-radius: 50%;
+  transition: .2s;
+  background: #F9F9F9;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.09);
+  z-index: 1;
+}
+
+.moviescard__checkbox:checked + .moviescard__label:before {
+  background-color: rgba(43, 224, 128, 1);
+}
