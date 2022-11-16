@@ -36,4 +36,6 @@
 
 @import url(../components/PageNotFound/PageNotFound.css);
 
+@import url(../components/ModalWindow/ModalWindow.css);
+
 @import url(../components/Preloader/Preloader.css);

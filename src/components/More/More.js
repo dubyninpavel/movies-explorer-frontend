@@ -1,9 +1,17 @@
-function More() {
+import PropTypes from 'prop-types';
+
+function More({ filterArr, handleClickBtn, isActiveElseButton }) {
   return (
-    <section className="more">
-      <button className="more__button">Еще</button>
-    </section>
+    (filterArr.length && isActiveElseButton) ? <section className='more'>
+      <button className="more__button" onClick={handleClickBtn}>Еще</button>
+    </section> : ''
   );
 }
+
+More.propTypes = {
+  filterArr: PropTypes.array,
+  handleClickBtn: PropTypes.func,
+  isActiveElseButton: PropTypes.bool,
+};
 
 export default More;

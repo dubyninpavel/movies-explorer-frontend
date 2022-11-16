@@ -29,6 +29,14 @@
   padding: 0 0 0 0;
 }
 
+.autorizationwithform__errmessage {
+  margin: 10px 0 0 0;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #FF3055;
+}
+
 .autorizationwithform__input {
   height: 46px;
   border: none;
@@ -55,8 +63,31 @@
   background-color: rgba(52, 86, 243, 1);
 }
 
+.autorizationwithform__errauth {
+  margin: 15vh 0 0 0;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #FF3055;
+  text-align: center;
+}
+
+.autorizationwithform__errauth + .autorizationwithform__button {
+  margin: 10px 0 17px 0;
+}
+
 .autorizationwithform__button:hover {
   opacity: .5;
+}
+
+.autorizationwithform__button_disabled {
+  color: #C2C2C2;
+  background-color: #F8F8F8;
+  cursor: default;
+}
+
+.autorizationwithform__button_disabled.autorizationwithform__button:hover {
+  opacity: 1;
 }
 
 .autorizationwithform__text {

@@ -18,7 +18,7 @@ Frontend часть приложения по поиску Фильмов
 5. React.
 
 ## Ссылка на pull requests
-* [pull requests](https://github.com/dubyninpavel/movies-explorer-frontend/pull/1)
+* [pull requests](https://github.com/dubyninpavel/movies-explorer-frontend/pull)
 
 ## Ссылка на макет Figma
 * [Яндекс Диск](https://disk.yandex.ru/d/UywlF3nqU2EurQ)
@@ -34,4 +34,8 @@ Frontend часть приложения по поиску Фильмов
 - `/vendor` — папка со шрифтами  
 
 ## Запуск проекта
-`npm run start` — запускает сайт на локальном хосте  
+`npm run start` — запускает сайт на локальном хосте
+
+IP 178.154.231.254
+Frontend https://project.movies.search.nomoredomains.icu
+Backend https://api.project.movies.search.nomoredomains.icu

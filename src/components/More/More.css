@@ -4,6 +4,10 @@
   padding: 50px 10px 80px;
 }
 
+.more__none {
+  display: none;
+}
+
 .more__button {
   margin: 0 0 0 0;
   padding: 0 0 0 0;
