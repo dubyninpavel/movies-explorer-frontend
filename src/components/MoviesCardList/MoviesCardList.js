@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
@@ -6,8 +5,8 @@ import Preloader from '../Preloader/Preloader';
 import { resultNotFoundMessage } from '../../constants/constants';
 
 function MoviesCardList({
-  filterArr, isSavedMoviesPages, count, showElseButton, theFirstLoadingMovies, resultNotFound,
-  isLoading, setLikeMovies, deleteLikeCard, deleteCard,
+  isSavedMoviesPages, filterArr, theFirstLoadingMovies, count, showElseButton, resultNotFound,
+  isLoading, setLikeMovies, deleteLikeMovies, deleteMovie,
 }) {
   const [sumCardDisplayed, setSumCardDisplayed] = useState(0);
 
@@ -34,31 +33,32 @@ function MoviesCardList({
           <h2 className='moviescardlist__textnotfound'>{resultNotFoundMessage}</h2>
       </div>
       <ul className={filter}>
-      {isSavedMoviesPages ? filterArr.map((movie, i) => (
+      {isSavedMoviesPages ? filterArr.map((movie) => (
         <MoviesCard
-          key = {i}
-          index = {i}
+          key = {movie.movieId}
+          index = {movie.movieId}
+          isSavedMoviesPages = {isSavedMoviesPages}
           nameRU = {movie.nameRU}
           duration = {movie.duration}
           like = {movie.like}
           link = {movie.image}
-          isSavedMoviesPages = {isSavedMoviesPages}
-          movie = {movie}
-          deleteLikeCard = {deleteLikeCard}
-          deleteCard = {deleteCard}
+          trailerLink = {movie.trailerLink}
+          movieId = {movie._id}
+          deleteMovie = {deleteMovie}
         />
       )) : filterArr.map((movie, i) => (
         i < sumCardDisplayed && <MoviesCard
           key = {movie.id}
           index = {movie.id}
+          isSavedMoviesPages = {isSavedMoviesPages}
           nameRU = {movie.nameRU}
           duration = {movie.duration}
           like = {movie.like}
           link = {movie.image.url}
-          isSavedMoviesPages = {isSavedMoviesPages}
           movie = {movie}
+          movieId = {movie._id}
           setLikeMovies = {setLikeMovies}
-          deleteLikeCard = {deleteLikeCard}
+          deleteLikeMovies = {deleteLikeMovies}
         />
       ))}
       </ul>
@@ -67,16 +67,16 @@ function MoviesCardList({
 }
 
 MoviesCardList.propTypes = {
-  filterArr: PropTypes.array,
   isSavedMoviesPages: PropTypes.bool,
+  filterArr: PropTypes.array,
+  theFirstLoadingMovies: PropTypes.number,
   count: PropTypes.number,
   showElseButton: PropTypes.func,
-  theFirstLoadingMovies: PropTypes.number,
   resultNotFound: PropTypes.bool,
   isLoading: PropTypes.bool,
   setLikeMovies: PropTypes.func,
-  deleteLikeCard: PropTypes.func,
-  deleteCard: PropTypes.func,
+  deleteLikeMovies: PropTypes.func,
+  deleteMovie: PropTypes.func,
 };
 
 export default MoviesCardList;

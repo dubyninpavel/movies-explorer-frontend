@@ -1,7 +1,4 @@
-/* eslint-disable comma-dangle */
-/* eslint-disable max-len */
-/* eslint-disable no-unused-vars */
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
@@ -9,7 +6,7 @@ function SearchForm({
   isSavedMoviesPages, onSubmit, isActiveCheckBox, handleStateCheckbox,
 }) {
   const [valueInput, setValueInput] = useState(
-    isSavedMoviesPages ? JSON.parse(localStorage.getItem('searchingFilterSavedMovies')) : JSON.parse(localStorage.getItem('searchingFilter'))
+    isSavedMoviesPages ? JSON.parse(localStorage.getItem('searchingFilterSavedMovies')) : JSON.parse(localStorage.getItem('searchingFilter')),
   );
 
   function handleChangeInputs(evt) {

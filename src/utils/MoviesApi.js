@@ -1,15 +1,9 @@
 /* eslint-disable class-methods-use-this */
-/* eslint-disable prefer-promise-reject-errors */
-/* eslint-disable no-underscore-dangle */
 import { BASE_URL } from '../constants/constants';
 
 class MoviesApi {
   constructor(url) {
     this.url = url;
-    this.headers = {
-      'Content-type': 'application/json',
-      authorization: this._getToken(),
-    };
   }
 
   getDataUser() {

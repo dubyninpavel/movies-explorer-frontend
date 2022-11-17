@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { validationMessageTextFormat } from '../constants/constants';
 
 function useFormInputs(valueInputDefault) {
   const [valueInput, setValueInput] = useState({ search: valueInputDefault });
@@ -31,7 +32,7 @@ function useFormWithValidation() {
 
     setErrorsInput((previousValues) => ({
       ...previousValues,
-      [name]: `${evt.target.validationMessage} ${evt.target.validationMessage === 'Введите данные в указанном формате.' ? 'Имя должно содержать только латиницу, кириллицу, пробел или дефис' : ''}`,
+      [name]: `${evt.target.validationMessage} ${evt.target.validationMessage === 'Введите данные в указанном формате.' ? validationMessageTextFormat : ''}`,
     }));
 
     setIsValid(evt.target.closest('form').checkValidity());

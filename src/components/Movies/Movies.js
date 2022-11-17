@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
@@ -10,7 +9,7 @@ import {
 } from '../../constants/constants';
 
 function Movies({
-  arrMovies, showElseButton, isActiveElseButton, setLikeMovies, deleteLikeCard,
+  arrMovies, showElseButton, isActiveElseButton, setLikeMovies, deleteLikeMovies,
 }) {
   const [filterArr, setFilterArr] = useState([]);
   const [searchingFilter, setSearchingFilter] = useState(JSON.parse(localStorage.getItem('searchingFilter')) || '');
@@ -104,15 +103,15 @@ function Movies({
         handleStateCheckbox = {handleStateCheckbox}
       />
       <MoviesCardList
-        filterArr = {filterArr}
         isSavedMoviesPages = {false}
-        count = {countPagination}
+        filterArr = {filterArr}
         theFirstLoadingMovies = {theFirstLoadingMovies}
+        count = {countPagination}
         showElseButton = {showElseButton}
         resultNotFound = {resultNotFound}
         isLoading = {isLoading}
         setLikeMovies = {setLikeMovies}
-        deleteLikeCard = {deleteLikeCard}
+        deleteLikeMovies = {deleteLikeMovies}
       />
       <More
         filterArr = {filterArr}
@@ -125,11 +124,10 @@ function Movies({
 
 Movies.propTypes = {
   arrMovies: PropTypes.array,
-  isSavedMoviesPages: PropTypes.bool,
   showElseButton: PropTypes.func,
   isActiveElseButton: PropTypes.bool,
   setLikeMovies: PropTypes.func,
-  deleteLikeCard: PropTypes.func,
+  deleteLikeMovies: PropTypes.func,
 };
 
 export default Movies;

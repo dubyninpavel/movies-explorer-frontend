@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import { BASE_URL } from '../constants/constants';
 
 export function register({ name, email, password }) {

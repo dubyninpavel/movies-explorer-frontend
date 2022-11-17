@@ -1,8 +1,6 @@
 /* eslint-disable class-methods-use-this */
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable prefer-promise-reject-errors */
-
-import { BASE_URL_BEATFILM } from '../constants/constants';
+import { BASE_URL_BEATFILM, promiseRejectMessage } from '../constants/constants';
 
 class BeatFilmApi {
   constructor(url) {
@@ -12,19 +10,19 @@ class BeatFilmApi {
     };
   }
 
-  _getPromiseResult(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject('Возникла ошибка');
-  }
-
   getMovies() {
     return fetch(this.url, {
       method: 'GET',
       headers: this.headers,
     })
       .then((res) => this._getPromiseResult(res));
+  }
+
+  _getPromiseResult(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(promiseRejectMessage);
   }
 }
 

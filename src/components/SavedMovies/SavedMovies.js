@@ -1,11 +1,10 @@
-/* eslint-disable no-unused-vars */
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 
 function SavedMovies({
-  arrSavedMovies, showElseButton, deleteLikeCard, deleteCard,
+  arrSavedMovies, showElseButton, deleteMovie,
 }) {
   const [filterArr, setFilterArr] = useState([]);
   const [isActiveCheckBox, setIsActiveCheckBox] = useState(JSON.parse(localStorage.getItem('stateCheckboxSavedMovies')) || false);
@@ -63,13 +62,12 @@ function SavedMovies({
       <MoviesCardList
         isSavedMoviesPages = {true}
         filterArr = {filterArr}
-        showElseButton = {showElseButton}
-        count = {arrSavedMovies.length}
-        isLoading = {isLoading}
-        resultNotFound = {resultNotFound}
         theFirstLoadingMovies = {arrSavedMovies.length}
-        deleteLikeCard = {deleteLikeCard}
-        deleteCard = {deleteCard}
+        count = {arrSavedMovies.length}
+        showElseButton = {showElseButton}
+        resultNotFound = {resultNotFound}
+        isLoading = {isLoading}
+        deleteMovie = {deleteMovie}
       />
     </main>
   );
@@ -78,8 +76,7 @@ function SavedMovies({
 SavedMovies.propTypes = {
   arrSavedMovies: PropTypes.array,
   showElseButton: PropTypes.func,
-  deleteLikeCard: PropTypes.func,
-  deleteCard: PropTypes.func,
+  deleteMovie: PropTypes.func,
 };
 
 export default SavedMovies;

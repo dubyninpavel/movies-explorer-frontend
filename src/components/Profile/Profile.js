@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
-import CurrentUserContext from '../contexts/CurrentUserContext';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../../utils/useHandlerFormInputs';
 import Preloader from '../Preloader/Preloader';
 

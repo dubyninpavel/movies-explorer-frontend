@@ -1,26 +1,22 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-unused-vars */
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function MoviesCard({
-  nameRU, duration, link, index, isSavedMoviesPages, movie, like, handleLike,
-  setLikeMovies, deleteLikeCard, deleteCard,
+  index, isSavedMoviesPages, nameRU, duration, like, link, trailerLink, movie, movieId,
+  setLikeMovies, deleteLikeMovies, deleteMovie,
 }) {
   const [isLike, setLike] = useState(like);
-  const [movies, setMovies] = useState(movie);
-  const [movieId, setMovieId] = useState('');
 
   function handlerChangeCheckbox() {
     if (isLike === true) {
-      deleteLikeCard(setLike, movies._id, setMovieId);
+      deleteLikeMovies(setLike, movieId);
     } else {
-      setLikeMovies(setLike, movies, setMovies, setMovieId);
+      setLikeMovies(setLike, movie);
     }
   }
 
   function handlerClickDeleteMovie() {
-    deleteCard(movie._id);
+    deleteMovie(movieId);
   }
 
   function movieDuration(minute) {
@@ -29,7 +25,9 @@ function MoviesCard({
 
   return (
     <li key={index} className="moviescard">
-      <img className='moviescard__photo' src={isSavedMoviesPages ? link : `https://api.nomoreparties.co${link}`} alt='Картинка к фильму' />
+      <a className='moviescard__trailerlink' href={isSavedMoviesPages ? trailerLink : movie.trailerLink}>
+        <img className='moviescard__photo' src={isSavedMoviesPages ? link : `https://api.nomoreparties.co${link}`} alt='Картинка к фильму' />
+      </a>
       <div className='moviescard__container'>
         <div className="moviescard__info">
           <h2 className='moviescard__title'>{nameRU}</h2>
@@ -48,17 +46,18 @@ function MoviesCard({
 }
 
 MoviesCard.propTypes = {
+  index: PropTypes.number,
+  isSavedMoviesPages: PropTypes.bool,
   nameRU: PropTypes.string,
   duration: PropTypes.number,
   like: PropTypes.bool,
   link: PropTypes.string,
-  index: PropTypes.number,
-  isSavedMoviesPages: PropTypes.bool,
+  trailerLink: PropTypes.string,
   movie: PropTypes.object,
+  movieId: PropTypes.string,
   setLikeMovies: PropTypes.func,
-  deleteLikeCard: PropTypes.func,
-  handleLike: PropTypes.func,
-  deleteCard: PropTypes.func,
+  deleteLikeMovies: PropTypes.func,
+  deleteMovie: PropTypes.func,
 };
 
 export default MoviesCard;

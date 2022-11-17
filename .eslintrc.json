@@ -18,9 +18,6 @@
         "react"
     ],
     "rules": {
-        //"no-underscore-dangle": ["off", {"allowAfterThis": false}]
-        /*"linebreak-style": ["off", "windows"],
-        "indent": ["warn", 4],
-        "react-in-jsx-scope": ["off"]*/
+      "no-underscore-dangle": ["error", { "allow": ["_id", "_getPromiseResult", "_getToken"] }]
     }
 }

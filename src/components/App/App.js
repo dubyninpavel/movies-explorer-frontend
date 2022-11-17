@@ -1,12 +1,4 @@
 /* eslint-disable no-console */
-/* eslint-disable no-undef */
-/* eslint-disable no-shadow */
-/* eslint-disable array-callback-return */
-/* eslint-disable prefer-const */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable max-len */
-/* eslint-disable no-unused-vars */
-
 import {
   Route, Switch, useHistory, Redirect,
 } from 'react-router-dom';
@@ -25,13 +17,13 @@ import beatfilmMovies from '../../utils/BeatFilmApi';
 import myMovies from '../../utils/MoviesApi';
 import ModalWindow from '../ModalWindow/ModalWindow';
 import { errMessageFilter } from '../../constants/constants';
-import CurrentUserContext from '../contexts/CurrentUserContext';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 import HadlerMessageValidation from '../../utils/hadlerMessageValidation';
 import * as Auth from '../../utils/Auth';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  const [downloadMoviesApi, setDownloadMoviesApi] = useState([]);
+  const [downloadBeatFilmApi, setDownloadBeatFilmApi] = useState([]);
   const [arrMovies, setArrMovies] = useState([]);
   const [arrSavedMovies, setArrSavedMovies] = useState([]);
   const [isOpenModalWindow, setIsOpenModalWindow] = useState(false);
@@ -39,7 +31,6 @@ function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isActiveElseButton, setIsActiveElseButton] = useState(false);
 
-  const [statusLike, setStatusLike] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -60,7 +51,7 @@ function App() {
         });
       beatfilmMovies.getMovies()
         .then((movies) => {
-          setDownloadMoviesApi(movies);
+          setDownloadBeatFilmApi(movies);
         })
         .catch(() => {
           setTextErrForModalWindow(errMessageFilter);
@@ -70,10 +61,10 @@ function App() {
   }, [isLoggedIn]);
 
   useEffect(() => {
-    const newArr = downloadMoviesApi.map((card) => {
+    const newArr = downloadBeatFilmApi.map((card) => {
       let statusLike = false;
       let id = '';
-      let arrFilter = arrSavedMovies.filter((savedMovies) => savedMovies.movieId === card.id);
+      const arrFilter = arrSavedMovies.filter((savedMovies) => savedMovies.movieId === card.id);
       if (arrFilter.length > 0) {
         statusLike = true;
         id = arrFilter[0]._id;
@@ -87,7 +78,7 @@ function App() {
     });
     localStorage.setItem('arrMoviesApi', JSON.stringify(newArr));
     setArrMovies(JSON.parse(localStorage.getItem('arrMoviesApi')));
-  }, [downloadMoviesApi, arrSavedMovies]);
+  }, [downloadBeatFilmApi, arrSavedMovies]);
 
   function toggleModalWindow() {
     setIsOpenModalWindow(!isOpenModalWindow);
@@ -141,35 +132,28 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  function setLikeMovies(setLike, movies, setMovies, setMovieId) {
-    myMovies.addSavedCard(movies)
+  function setLikeMovies(setLike, movie) {
+    myMovies.addSavedCard(movie)
       .then((addNewMovies) => {
-        console.log(addNewMovies.data.nameRU, addNewMovies.data._id);
         setLike(true);
         setArrSavedMovies([addNewMovies.data, ...arrSavedMovies]);
-        setMovies(addNewMovies.data);
-        setMovieId(addNewMovies.data._id);
       })
       .catch((err) => console.log(err));
   }
 
-  function deleteLikeCard(setLike, movieId, setMovieId) {
+  function deleteLikeMovies(setLike, movieId) {
+    console.log(movieId);
     myMovies.deleteSavedMovies(movieId)
       .then((removedMovie) => {
-        console.log(removedMovie);
-        const removedMovieId = removedMovie.item._id;
-        console.log(removedMovie.item.nameRU, removedMovieId);
         setLike(false);
-        setMovieId('');
         setArrSavedMovies((state) => state.filter((card) => card._id !== removedMovie.item._id));
       })
       .catch((err) => console.log(err));
   }
 
-  function deleteCard(movieId) {
+  function deleteMovie(movieId) {
     myMovies.deleteSavedMovies(movieId)
       .then((removedMovie) => {
-        console.log(removedMovie);
         setArrSavedMovies((state) => state.filter((card) => card._id !== removedMovie.item._id));
       })
       .catch((err) => console.log(err));
@@ -207,11 +191,10 @@ function App() {
             <Header />
             <Movies
               arrMovies = {arrMovies}
-              isSavedMoviesPages = {false}
               showElseButton = {showElseButton}
               isActiveElseButton = {isActiveElseButton}
               setLikeMovies = {setLikeMovies}
-              deleteLikeCard = {deleteLikeCard}
+              deleteLikeMovies = {deleteLikeMovies}
             />
             <Footer />
           </Route>
@@ -220,8 +203,7 @@ function App() {
             <SavedMovies
               arrSavedMovies = {arrSavedMovies}
               showElseButton = {showElseButton}
-              deleteLikeCard = {deleteLikeCard}
-              deleteCard = {deleteCard}
+              deleteMovie = {deleteMovie}
             />
             <Footer />
           </Route>
