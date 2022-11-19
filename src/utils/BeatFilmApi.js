@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-/* eslint-disable prefer-promise-reject-errors */
+
 import { BASE_URL_BEATFILM, promiseRejectMessage } from '../constants/constants';
 
 class BeatFilmApi {

@@ -6,7 +6,7 @@ function SearchForm({
   isSavedMoviesPages, onSubmit, isActiveCheckBox, handleStateCheckbox,
 }) {
   const [valueInput, setValueInput] = useState(
-    isSavedMoviesPages ? JSON.parse(localStorage.getItem('searchingFilterSavedMovies')) : JSON.parse(localStorage.getItem('searchingFilter')),
+    isSavedMoviesPages ? '' : JSON.parse(localStorage.getItem('searchingFilter')),
   );
 
   function handleChangeInputs(evt) {

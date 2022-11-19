@@ -5,7 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import More from '../More/More';
 import {
   countMoviesForDeskTop, countMoviesForTablet, countMoviesForMobile, paginationForDeskTop,
-  paginationForTablet, paginationForMobile,
+  paginationForTablet, paginationForMobile, durationShortMovie, bigWidthWindow, mediumWidthWindow,
 } from '../../constants/constants';
 
 function Movies({
@@ -35,10 +35,10 @@ function Movies({
 
   useEffect(() => {
     window.addEventListener('resize', setTimeoutResize);
-    if (windowWidth >= 990) {
+    if (windowWidth >= bigWidthWindow) {
       setTheFirstLoadingMovies(countMoviesForDeskTop);
       handleCountPagination(paginationForDeskTop);
-    } else if (windowWidth < 990 && windowWidth >= 620) {
+    } else if (windowWidth < bigWidthWindow && windowWidth >= mediumWidthWindow) {
       setTheFirstLoadingMovies(countMoviesForTablet);
       handleCountPagination(paginationForTablet);
     } else {
@@ -59,7 +59,7 @@ function Movies({
     if (isActiveCheckBox) {
       const arrChecked = arr.filter((movies) => {
         const durationMovie = movies.duration;
-        return durationMovie < 40;
+        return durationMovie < durationShortMovie;
       });
       setIsLoading(false);
       setFilterArr(arrChecked);
@@ -81,7 +81,9 @@ function Movies({
 
   function handleSubmit(search) {
     localStorage.setItem('searchingFilter', JSON.stringify(search));
-    setIsLoading(true);
+    if (!(search.toLowerCase() === searchingFilter)) {
+      setIsLoading(true);
+    }
     setSearchingFilter(search.toLowerCase());
   }
 

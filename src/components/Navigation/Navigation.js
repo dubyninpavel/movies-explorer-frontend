@@ -11,12 +11,12 @@ function Navigation({ isOpenNavMenu, onCloseMenu }) {
             <div className='navigation__btnclose' onClick={onCloseMenu}>
               <span></span>
             </div>
-            <NavLink exact to='/' className={`navigation__main ${isOpenNavMenu ? 'navigation__main_active' : ''}`} activeClassName='navigation__main_activelink' >Главная</NavLink>
+            <NavLink exact to='/' className={({ isActive }) => `navigation__main ${isOpenNavMenu ? 'navigation__main_active' : ''} ${isActive && 'navigation__main_activelink'}`}>Главная</NavLink>
           </> : ''
         }
-        <NavLink to='/movies' className={`navigation__movies ${isOpenNavMenu ? 'navigation__main_active navigation__movies_active' : ''}`} activeClassName='navigation__movies_activelink navigation__main_activelink' >Фильмы</NavLink>
-        <NavLink to='/saved-movies' className={`navigation__savedmovies ${isOpenNavMenu ? 'navigation__main_active navigation__savedmovies_active' : ''}`} activeClassName='navigation__savedmovies_activelink navigation__main_activelink'>Сохраненные фильмы</NavLink>
-        <NavLink to='/profile' className={`navigation__lk ${isOpenNavMenu ? 'navigation__lk_active' : ''}`} activeClassName='navigation__lk_activelink' >
+        <NavLink to='/movies' className={({ isActive }) => `navigation__movies ${isOpenNavMenu ? 'navigation__main_active navigation__movies_active' : ''} ${isActive && 'navigation__movies_activelink navigation__main_activelink'}`}>Фильмы</NavLink>
+        <NavLink to='/saved-movies' className={({ isActive }) => `navigation__savedmovies ${isOpenNavMenu ? 'navigation__main_active navigation__savedmovies_active' : ''} ${isActive && 'navigation__savedmovies_activelink navigation__main_activelink'}`}>Сохраненные фильмы</NavLink>
+        <NavLink to='/profile' className={({ isActive }) => `navigation__lk ${isOpenNavMenu ? 'navigation__lk_active' : ''} ${isActive && 'navigation__lk_activelink'}`}>
           <h2 className='navigation__textlk'>Аккаунт</h2>
           <img className='navigation__imagelk' src={headerLogoLk} alt='Логопит личного кабинета' />
         </NavLink>

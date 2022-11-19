@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 import {
-  Route, Switch, useHistory, Redirect,
+  Navigate, Route, Routes, useNavigate,
 } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Main from '../Main/Main';
@@ -19,19 +20,34 @@ import ModalWindow from '../ModalWindow/ModalWindow';
 import { errMessageFilter } from '../../constants/constants';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import HadlerMessageValidation from '../../utils/hadlerMessageValidation';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import * as Auth from '../../utils/Auth';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  const [downloadBeatFilmApi, setDownloadBeatFilmApi] = useState([]);
+  const [downloadBeatFilmApi, setDownloadBeatFilmApi] = useState(JSON.parse(localStorage.getItem('downloadBeatFilmApi')) || []);
   const [arrMovies, setArrMovies] = useState([]);
   const [arrSavedMovies, setArrSavedMovies] = useState([]);
   const [isOpenModalWindow, setIsOpenModalWindow] = useState(false);
   const [textErrForModalWindow, setTextErrForModalWindow] = useState('');
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(localStorage.getItem('token') !== null);
   const [isActiveElseButton, setIsActiveElseButton] = useState(false);
-
-  const history = useHistory();
+  const [isOpenMessageWindow, setOpenMessageWindow] = useState(false);
+  const navigate = useNavigate();
+  console.log(isLoggedIn);
+  useEffect(() => {
+    if (localStorage.getItem('token') !== null) {
+      myMovies.tokenCheck()
+        .then(() => {
+          setLoggedIn(true);
+        })
+        .catch((err) => {
+          setLoggedIn(false);
+          localStorage.clear();
+          console.log(err);
+        });
+    }
+  }, [localStorage.getItem('token')]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -49,14 +65,17 @@ function App() {
         .catch((err) => {
           console.log('err', err);
         });
-      beatfilmMovies.getMovies()
-        .then((movies) => {
-          setDownloadBeatFilmApi(movies);
-        })
-        .catch(() => {
-          setTextErrForModalWindow(errMessageFilter);
-          setIsOpenModalWindow(true);
-        });
+      if (!JSON.parse(localStorage.getItem('downloadBeatFilmApi'))) {
+        beatfilmMovies.getMovies()
+          .then((movies) => {
+            localStorage.setItem('downloadBeatFilmApi', JSON.stringify(movies));
+            setDownloadBeatFilmApi(movies);
+          })
+          .catch(() => {
+            setTextErrForModalWindow(errMessageFilter);
+            setIsOpenModalWindow(true);
+          });
+      }
     }
   }, [isLoggedIn]);
 
@@ -91,44 +110,56 @@ function App() {
   function handleLogin(valueInput, setIsLoading, setIsErrMessage, setErrAuth) {
     Auth.authorize(valueInput)
       .then((res) => {
-        const error = HadlerMessageValidation(res);
-        setIsErrMessage(error.errMessage);
-        setErrAuth(error.bool);
         if (res.data) {
           localStorage.setItem('token', res.token);
           setLoggedIn(true);
-          history.push('/movies');
+          navigate('/movies');
         }
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        const error = HadlerMessageValidation(err);
+        setIsErrMessage(error.errMessage);
+        setErrAuth(error.bool);
+        console.log(err);
+      })
       .finally(() => setIsLoading(false));
   }
 
   function handleRegister(valueInput, setIsLoading, setIsErrMessage, setErrAuth) {
     Auth.register(valueInput)
       .then((res) => {
-        const error = HadlerMessageValidation(res);
-        setIsErrMessage(error.errMessage);
-        setErrAuth(error.bool);
         if (res.data) {
           handleLogin(valueInput, setIsLoading, setIsErrMessage, setErrAuth);
         }
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        const error = HadlerMessageValidation(err);
+        setIsErrMessage(error.errMessage);
+        setErrAuth(error.bool);
+        console.log(err);
+      })
       .finally(() => setIsLoading(false));
+  }
+
+  function closeMessageWindow() {
+    setOpenMessageWindow(false);
   }
 
   function changeInfoProfile(valueInput, setIsLoading, setIsErrMessage, setErrAuth) {
     myMovies.changeDataUser(valueInput)
       .then((newDataUser) => {
-        const error = HadlerMessageValidation(newDataUser);
-        setIsErrMessage(error.errMessage);
-        setErrAuth(error.bool);
         if (newDataUser.data) {
+          setOpenMessageWindow(true);
+          setTimeout(closeMessageWindow, 5000);
           setCurrentUser(newDataUser.data);
         }
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        const error = HadlerMessageValidation(err);
+        setIsErrMessage(error.errMessage);
+        setErrAuth(error.bool);
+        console.log(err);
+      })
       .finally(() => setIsLoading(false));
   }
 
@@ -142,7 +173,6 @@ function App() {
   }
 
   function deleteLikeMovies(setLike, movieId) {
-    console.log(movieId);
     myMovies.deleteSavedMovies(movieId)
       .then((removedMovie) => {
         setLike(false);
@@ -160,70 +190,119 @@ function App() {
   }
 
   function signOut() {
-    localStorage.removeItem('token');
     setLoggedIn(false);
-    history.push('/');
+    navigate('/');
     localStorage.clear();
     setCurrentUser({});
   }
 
   return (
     <div className='page'>
-      <Switch>
-        <Route path='/signup'>
-          <HeaderAuth />
-          <Register
-            onRegister = {handleRegister}
+      <CurrentUserContext.Provider value={currentUser}>
+        <Routes>
+          <Route
+            path = '/signup'
+            element = {
+              <ProtectedRoute
+                isLoggedIn = {!isLoggedIn}
+                navigateTo = "/movies"
+              >
+                <HeaderAuth />
+                <Register
+                  onRegister = {handleRegister}
+                />
+              </ProtectedRoute>
+            }
           />
-        </Route>
-        <Route path='/signin'>
-          <HeaderAuth />
-          <Login
-            onLogin = {handleLogin}
+          <Route
+            path = '/signin'
+            element = {
+              <ProtectedRoute
+                isLoggedIn = {!isLoggedIn}
+                navigateTo = "/movies"
+              >
+                <HeaderAuth />
+                <Login
+                  onLogin = {handleLogin}
+                />
+              </ProtectedRoute>
+            }
           />
-        </Route>
-        <CurrentUserContext.Provider value={currentUser}>
-          <Route exact path='/'>
-            <Main />
-          </Route>
-          {isLoggedIn ? <Redirect to="/movies" /> : <Redirect to="/" />}
-          <Route path='/movies'>
-            <Header />
-            <Movies
-              arrMovies = {arrMovies}
-              showElseButton = {showElseButton}
-              isActiveElseButton = {isActiveElseButton}
-              setLikeMovies = {setLikeMovies}
-              deleteLikeMovies = {deleteLikeMovies}
-            />
-            <Footer />
-          </Route>
-          <Route path='/saved-movies'>
-            <Header />
-            <SavedMovies
-              arrSavedMovies = {arrSavedMovies}
-              showElseButton = {showElseButton}
-              deleteMovie = {deleteMovie}
-            />
-            <Footer />
-          </Route>
-          <Route path='/profile'>
-            <Header />
-            <Profile
-              onSubmit = {changeInfoProfile}
-              goOut ={signOut}
-            />
-          </Route>
-        </CurrentUserContext.Provider>
-        <Route path="*">
-          <PageNotFound />
-        </Route>
-      </Switch>
-      <ModalWindow
-        isOpen = {isOpenModalWindow}
-        toggleModalWindow = {toggleModalWindow}
-        textErrForModalWindow = {textErrForModalWindow}
-      />
+          <Route
+            path = '/'
+            exact
+            element = {
+              <Main
+                isLoggedIn = {isLoggedIn}
+              />
+            }
+          />
+          <Route
+            path = '/movies'
+            element = {
+              <ProtectedRoute
+                isLoggedIn = {isLoggedIn}
+                navigateTo = "/"
+              >
+                <Header />
+                <Movies
+                  arrMovies = {arrMovies}
+                  showElseButton = {showElseButton}
+                  isActiveElseButton = {isActiveElseButton}
+                  setLikeMovies = {setLikeMovies}
+                  deleteLikeMovies = {deleteLikeMovies}
+                />
+                <Footer />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path = '/saved-movies'
+            element = {
+              <ProtectedRoute
+                isLoggedIn={isLoggedIn}
+                navigateTo = "/"
+              >
+                <Header />
+                <SavedMovies
+                  arrSavedMovies = {arrSavedMovies}
+                  showElseButton = {showElseButton}
+                  deleteMovie = {deleteMovie}
+                />
+                <Footer />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path = '/profile'
+            element = {
+              <ProtectedRoute
+                isLoggedIn={isLoggedIn}
+                navigateTo = "/"
+              >
+                <Header />
+                <Profile
+                  onSubmit = {changeInfoProfile}
+                  goOut ={signOut}
+                  isOpenMessageWindow = {isOpenMessageWindow}
+                  onClickBtnClose = {closeMessageWindow}
+                />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path = "*"
+            element = {
+              <PageNotFound />
+            }
+          />
+        </Routes>
+        <ModalWindow
+          isOpen = {isOpenModalWindow}
+          toggleModalWindow = {toggleModalWindow}
+          textErrForModalWindow = {textErrForModalWindow}
+        />
+      </CurrentUserContext.Provider>
     </div>
   );
 }

@@ -3,30 +3,34 @@
   flex-direction: column;
   align-items: center;
   margin: 0 0 0 0;
-  padding: 27vh 0 0 0;
+  padding: 18vh 0 0 0;
+  height: -webkit-fill-available;
+  background-color: rgb(244, 244, 244);
 }
 
-.pagenotfound__title {
-  font-weight: 400;
-  font-size: 140px;
-  line-height: 169px;
-  margin: 7px 0 5px 0;
+.pagenotfound__img {
+  width: 100vw;
 }
 
 .pagenotfound__subtitle {
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-  margin: 0 0 5px 0;
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.pagenotfound__subtitle:last-child {
+  margin: 10px 0 0 0;
 }
 
 .pagenotfound__link {
   font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 17px;
+  line-height: 20px;
   color: rgba(52, 86, 243, 1);
   text-decoration: none;
-  margin: 14% 0 0 0;
+  margin: 0 0 0 0;
 }
 
 .pagenotfound__link:hover {
@@ -34,10 +38,6 @@
 }
 
 @media (max-width: 450px) {
-  .pagenotfound__title {
-    font-size: 80px;
-    line-height: 97px;
-  }
   .pagenotfound__subtitle {
     font-size: 12px;
     line-height: 15px;

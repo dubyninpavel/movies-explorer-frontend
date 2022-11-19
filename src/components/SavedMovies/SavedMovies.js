@@ -2,13 +2,14 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
+import { durationShortMovie } from '../../constants/constants';
 
 function SavedMovies({
   arrSavedMovies, showElseButton, deleteMovie,
 }) {
   const [filterArr, setFilterArr] = useState([]);
-  const [isActiveCheckBox, setIsActiveCheckBox] = useState(JSON.parse(localStorage.getItem('stateCheckboxSavedMovies')) || false);
-  const [searchingFilter, setSearchingFilter] = useState(JSON.parse(localStorage.getItem('searchingFilterSavedMovies')) || '');
+  const [isActiveCheckBox, setIsActiveCheckBox] = useState(false);
+  const [searchingFilter, setSearchingFilter] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [resultNotFound, setResultNotFound] = useState(false);
 
@@ -21,7 +22,7 @@ function SavedMovies({
     if (isActiveCheckBox) {
       const arrCheckedCheckbox = arr.filter((movies) => {
         const durationMovie = movies.duration;
-        return durationMovie < 40;
+        return durationMovie < durationShortMovie;
       });
       setIsLoading(false);
       setFilterArr(arrCheckedCheckbox);
@@ -29,12 +30,12 @@ function SavedMovies({
     } else {
       setIsLoading(false);
       setFilterArr(arr);
-      localStorage.setItem('arrSearchingMoviesSaved', JSON.stringify(arr));
+      localStorage.setItem('arrSearchingMovies', JSON.stringify(arr));
     }
   }, [searchingFilter, isActiveCheckBox, arrSavedMovies]);
 
   useEffect(() => {
-    if (filterArr.length === 0 && searchingFilter.length >= 0) {
+    if (filterArr.length === 0 && searchingFilter.length > 0) {
       setResultNotFound(true);
     } else {
       setResultNotFound(false);
@@ -42,13 +43,14 @@ function SavedMovies({
   }, [filterArr]);
 
   function handleSubmit(search) {
-    localStorage.setItem('searchingFilterSavedMovies', JSON.stringify(search));
+    if (!(search.toLowerCase() === searchingFilter)) {
+      setIsLoading(true);
+    }
     setSearchingFilter(search.toLowerCase());
   }
 
   function handleStateCheckbox() {
     setIsActiveCheckBox(!isActiveCheckBox);
-    localStorage.setItem('stateCheckboxSavedMovies', JSON.stringify(!isActiveCheckBox));
   }
 
   return (

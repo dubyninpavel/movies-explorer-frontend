@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { validationMessageTextFormat } from '../constants/constants';
+import { validationMessageTextFormatName, validationMessageTextFormatEmail } from '../constants/constants';
 
 function useFormInputs(valueInputDefault) {
   const [valueInput, setValueInput] = useState({ search: valueInputDefault });
@@ -32,7 +32,7 @@ function useFormWithValidation() {
 
     setErrorsInput((previousValues) => ({
       ...previousValues,
-      [name]: `${evt.target.validationMessage} ${evt.target.validationMessage === 'Введите данные в указанном формате.' ? validationMessageTextFormat : ''}`,
+      [name]: `${evt.target.validationMessage} ${evt.target.validationMessage === 'Введите данные в указанном формате.' ? (name === 'email' && validationMessageTextFormatEmail) || (name === 'name' && validationMessageTextFormatName) : ''}`,
     }));
 
     setIsValid(evt.target.closest('form').checkValidity());

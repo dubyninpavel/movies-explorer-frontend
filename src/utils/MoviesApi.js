@@ -1,9 +1,22 @@
+/* eslint-disable prefer-promise-reject-errors */
 /* eslint-disable class-methods-use-this */
-import { BASE_URL } from '../constants/constants';
+
+import { BASE_URL, defaultError } from '../constants/constants';
 
 class MoviesApi {
   constructor(url) {
     this.url = url;
+  }
+
+  _getPromiseResult(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(defaultError);
+  }
+
+  _getToken() {
+    return `Bearer ${localStorage.getItem('token')}`;
   }
 
   getDataUser() {
@@ -29,7 +42,13 @@ class MoviesApi {
         email,
       }),
     })
-      .then((res) => this._getPromiseResult(res));
+      .then(async (res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        const resJson = await res.json();
+        return Promise.reject(resJson);
+      });
   }
 
   addSavedCard(data) {
@@ -78,12 +97,21 @@ class MoviesApi {
       .then((res) => this._getPromiseResult(res));
   }
 
-  _getPromiseResult(res) {
-    return res.json();
-  }
-
-  _getToken() {
-    return `Bearer ${localStorage.getItem('token')}`;
+  tokenCheck() {
+    return fetch(`${this.url}/users/me`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        authorization: this._getToken(),
+      },
+    })
+      .then(async (res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        const resJson = await res.json();
+        return Promise.reject(resJson);
+      });
   }
 }
 

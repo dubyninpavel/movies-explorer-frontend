@@ -1,3 +1,5 @@
+/* eslint-disable prefer-promise-reject-errors */
+
 import { BASE_URL } from '../constants/constants';
 
 export function register({ name, email, password }) {
@@ -12,15 +14,13 @@ export function register({ name, email, password }) {
       email,
     }),
   })
-    .then((res) => {
-      try {
+    .then(async (res) => {
+      if (res.ok) {
         return res.json();
-      } catch (err) {
-        return (err);
       }
-    })
-    .then((res) => res)
-    .catch((err) => err);
+      const resJson = await res.json();
+      return Promise.reject(resJson);
+    });
 }
 
 export function authorize({ email, password }) {
@@ -34,13 +34,11 @@ export function authorize({ email, password }) {
       email,
     }),
   })
-    .then((res) => {
-      try {
+    .then(async (res) => {
+      if (res.ok) {
         return res.json();
-      } catch (err) {
-        return (err);
       }
-    })
-    .then((res) => res)
-    .catch((err) => err);
+      const resJson = await res.json();
+      return Promise.reject(resJson);
+    });
 }

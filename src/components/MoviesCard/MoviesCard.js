@@ -25,7 +25,7 @@ function MoviesCard({
 
   return (
     <li key={index} className="moviescard">
-      <a className='moviescard__trailerlink' href={isSavedMoviesPages ? trailerLink : movie.trailerLink}>
+      <a className='moviescard__trailerlink' href={isSavedMoviesPages ? trailerLink : movie.trailerLink} target="_blank" rel='noreferrer'>
         <img className='moviescard__photo' src={isSavedMoviesPages ? link : `https://api.nomoreparties.co${link}`} alt='Картинка к фильму' />
       </a>
       <div className='moviescard__container'>

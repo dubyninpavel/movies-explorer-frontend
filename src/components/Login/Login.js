@@ -4,7 +4,7 @@ import AutorizationWithForm from '../AutorizationWithForm/AutorizationWithForm';
 
 function Login({ onLogin }) {
   const [isErrMessage, setIsErrMessage] = useState('');
-  const [isErrAuth1, setErrAuth] = useState(false);
+  const [isErrAuth, setErrAuth] = useState(false);
 
   function handleSubmit(valueInput, setIsLoading) {
     onLogin(valueInput, setIsLoading, setIsErrMessage, setErrAuth);
@@ -20,7 +20,7 @@ function Login({ onLogin }) {
         titleLink = {'Регистрация'}
         link = {'/signup'}
         onSubmit = {handleSubmit}
-        isErrAuth = {isErrAuth1}
+        isErrAuth = {isErrAuth}
         textErrAuth = {isErrMessage}
       />
     </main>
