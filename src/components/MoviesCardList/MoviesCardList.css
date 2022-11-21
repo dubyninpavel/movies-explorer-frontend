@@ -3,14 +3,34 @@
   padding: 66px 70px 30px;
 }
 
+.moviescardlist__blockofresult {
+  display: none;
+}
+
+.moviescardlist__blockofresult_active {
+  display: block;
+}
+
+.moviescardlist__textnotfound {
+  font-weight: 500;
+  font-size: 31px;
+  line-height: 39px;
+  text-align: center;
+  margin: 10px 0 40px;
+}
+
 .moviescardlist__container {
   display: grid;
   list-style-type: none;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 270px));
   gap: 32px 20px;
   padding: 0 0 0 0;
   margin: 0 0 0 0;
+}
+
+.moviescardlist__container_none {
+  display: none;
 }
 
 @media (max-width: 768px) {

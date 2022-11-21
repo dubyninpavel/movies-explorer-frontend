@@ -18,7 +18,7 @@
   flex-direction: column;
   width: 100%;
   max-width: 410px;
-  margin: 0 0 220px 0;
+  margin: 0 0 0 0;
   padding: 24px 0 0 0;
 }
 
@@ -35,10 +35,13 @@
 }
 
 .profile__data {
+  text-align: end;
   font-weight: 400;
   font-size: 11px;
   line-height: 13px;
   margin: 0 0 0 0;
+  padding: 0;
+  border: none;
 }
 
 .profile__line {
@@ -54,15 +57,29 @@
   border: none;
   padding: 0;
   background-color: white;
+  cursor: pointer;
+}
+
+.autorizationwithform__errauth + .profile__edit {
+  margin: 16px 0;
+}
+
+.profile__button_disabled {
+  color: #C2C2C2;;
+  cursor: default;
+}
+
+.profile__button_disabled.profile__edit:hover {
+  opacity: 1;
 }
 
 .profile__edit {
   font-weight: 400;
-  margin: 0 0 16px 0;
+  margin: 220px 0 16px 0;
 }
 
 .profile__edit:hover {
-  color:rgb(78, 122, 180);
+  opacity: .5;
 }
 
 .profile__signout {

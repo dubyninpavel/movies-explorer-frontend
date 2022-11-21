@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Promo from '../Promo/Promo';
 import NavTab from '../NavTab/NavTab';
 import AboutProject from '../AboutProject/AboutProject';
@@ -6,10 +7,12 @@ import AboutMe from '../AboutMe/AboutMe';
 import Portfolio from '../Portfolio/Portfolio';
 import Footer from '../Footer/Footer';
 
-function Main() {
+function Main({ isLoggedIn }) {
   return (
     <>
-      <Promo />
+      <Promo
+        isLoggedIn = {isLoggedIn}
+      />
       <main className='main'>
         <NavTab />
         <AboutProject />
@@ -21,5 +24,9 @@ function Main() {
     </>
   );
 }
+
+Main.propTypes = {
+  isLoggedIn: PropTypes.bool,
+};
 
 export default Main;
